@@ -84,4 +84,36 @@ describe("Functional Testing with Selenium WebDriver", () => {
     const value = await input.getAttribute("value");
     expect(value).toBe("тест");
   }, 20000);
+  it("должен уметь входить в аккаунт", async () => {
+    await driver.get("https://www.wildberries.ru/");
+
+    const loginButton = await driver.findElement(
+      By.xpath("/html/body/div[2]/a[4]/span")
+    );
+    await loginButton.click();
+    const Button = await driver.findElement(
+      By.xpath("/html/body/div[1]/div/div/a")
+    );
+    await Button.click();
+    await driver.wait(
+      until.elementLocated(
+        By.xpath(
+          "/html/body/div[1]/main/div[2]/div/div[2]/div/div/form/div/div[1]/div/div[2]/input"
+        )
+      ),
+      20000
+    );
+    const inputLogin = await driver.findElement(
+      By.xpath("/html/body/div[1]/div[2]/div[1]/input")
+    );
+    await inputLogin.sendKeys("Bardaev");
+    const inputPass = await driver.findElement(
+      By.xpath("/html/body/div[1]/div[2]/div[2]/input")
+    );
+    await inputPass.sendKeys("BFA123321b@");
+    const vhod = await driver.findElement(
+      By.xpath("/html/body/div[1]/div[2]/div[5]")
+    );
+    await vhod.click();
+  });
 });
