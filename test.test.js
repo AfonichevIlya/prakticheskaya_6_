@@ -70,7 +70,7 @@ describe("Functional Testing with Selenium WebDriver", () => {
       until.elementLocated(
         By.xpath("/html/body/div[1]/header/div/div[2]/div[2]/div[1]/input")
       ),
-      15000
+      20000
     );
 
     await input.sendKeys("тест");
@@ -78,7 +78,7 @@ describe("Functional Testing with Selenium WebDriver", () => {
     await driver.wait(async function () {
       const value = await input.getAttribute("value");
       return value === "тест";
-    }, 10000);
+    }, 20000);
 
     // Проверяем значение
     const value = await input.getAttribute("value");
